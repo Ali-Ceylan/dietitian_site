@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Posta Gönderme Formu</title>
+    <style>
+         .sinif{
+            text-align: center;
+            margin:0 auto;
+            width: auto;
+            margin-top: 30px;
+        }
+        .ust{
+            width: 400px;
+            height: 50px;
+            background-color: lightgray;
+            padding: 20px 20px 20px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .alt{width: 400px;
+            height: 50px;
+            background-color: lightgray;
+            margin-top: 10px;
+            padding: 20px 20px 20px 20px;
+            border:2px;
+            text-align: left;}
+            .gonder{
+                margin-left:0px;
+                width: 100px;
+                height:40px;
+                border-radius: 5px;
+                background-color: rgb(60, 60, 245);
+                color: white;
+            }
+            .gonder :hover{background-color: darkblue;
+            color:white;}
+            table{background-color: lightgray;
+                color:black;
+                border:5px solid red;
+                border-radius: 5px;
+                width: 700px;
+            height: 400px; }
+    </style>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+    {% block content %}
+  <table class="tablo">
+    
+  <tr><td><h2>Mail Gonder</h2></td></tr>
+  <tr><td>
+    {% if user.is_authenticated %}
+        
+      <form method="post" action="{% url 'mail_gonder' %}">
+          {% csrf_token %}
+          <tr ><td>{{ form.as_p }}</td></tr>
+          <tr><td><button type="submit">Mail Gonder</button></tr></td>
+      </form>
+      </td></tr>
+      <tr><td>
+      
+        </td></tr>
+  {% else %}
+      <p>Giriş yapmadınız. Yorum yapabilmek için <a href="{% url 'login' %}">buraya tıklayın</a>.</p>
+  {% endif %}
+
+  <!--<ul>
+      {% for yorum in yorumlar %}
+          <li>{{ yorum.kullanici.username }} - {{ yorum.tarih }}: {{ yorum.icerik }}</li>
+      {% endfor %}
+  </ul>-->
+
+</table>
+{% endblock %}
+</body>
+</html>

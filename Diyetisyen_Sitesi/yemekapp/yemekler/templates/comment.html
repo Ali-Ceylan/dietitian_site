@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yorum</title>
+    <style>
+      .tablo{background-color: white;
+                margin:0 auto;
+                margin-top: 30px;
+                margin-left: 330px;
+                color:black;
+                
+                
+                padding: 10px 10px;
+                width: 765px;
+            height:auto }
+    </style>
+</head>
+<body>
+  
+  {% block content %}
+  <table class="tablo">
+    
+  <tr><td><h2 style="color: blue;"><i>Yorumlar</i></h2></td></tr>
+  <tr><td><hr style="color:blue; border-bottom:6px solid blue;" ></td></tr>
+  <tr><td>
+    {% if user.is_authenticated %}
+    <form method="post" action="{% url 'yorumlar' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <tr ><td><h4>Yorum:</h4></td></tr>
+        <tr><td>  <textarea name="{{ form.icerik.name }}" class="form-control" style="border-radius: 10px;">{{ form.icerik.value }}</textarea></tr></td>
+      </div>
+      <tr><td><button type="submit" class="btn btn-primary">Yorum Ekle</button></tr></td>
+  </form>
+      
+      </td></tr>
+      <tr><td>
+      <div class="row">
+         
+            <div class="col-lg-6 col-lg-offset-3">
+                <tr><td><h2 class="page-header" style="color: blue;"><i>Yorumlar [{{ yorumlar|length }}]</i></h2></td></tr>
+                <tr><td><hr style="color:blue; border-bottom:2px solid black;" ></td></tr>
+                {% for yorum in yorumlar %}
+                <div class="col-lg-12">
+                <tr><td> <table style="width: 765px; border: 1px solid lightgray; border-radius: 5px; box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);">
+                  <tr>
+                      <td>
+                          <p class="lead">
+                              <h4>
+                                  <p style="color: green; float:left">Kullanıcı:</p>
+                                  <p style="color: gray; float: left;">{{ yorum.kullanici.username }} ,<small> {{ yorum.tarih }}</small></p>
+                              </h4>
+                          </p>
+                      </td>
+                  </tr> 
+                  <tr>
+                      <td>
+                          <p class="lead">
+                              <h5 style="color: green; float:left ">Yorum:</h5>
+                              <h5 style="color: black; float:left ">{{ yorum.icerik }}</h5>
+                          </p>
+                      </td>
+                  </tr>
+              </table>
+              </td></tr> 
+                 <tr><td><hr style="color:black; size:10;" ></td></tr>
+                
+                {% endfor %}
+            </div>
+          </div>
+        </td></tr>
+  {% else %}
+      <p>Giriş yapmadınız. Yorum yapabilmek için <a href="{% url 'login' %}">buraya tıklayın</a>.</p>
+  {% endif %}
+
+  <!--<ul>
+      {% for yorum in yorumlar %}
+          <li>{{ yorum.kullanici.username }} - {{ yorum.tarih }}: {{ yorum.icerik }}</li>
+      {% endfor %}
+  </ul>-->
+
+</table>
+{% endblock %}
+
+
+</table>
+</body>
+</html>

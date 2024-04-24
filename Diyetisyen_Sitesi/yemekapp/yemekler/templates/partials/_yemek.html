@@ -1,0 +1,17 @@
+{% load static %}
+<style>
+    .card-img-top{
+        width: 100%;
+        height: 18vw;
+        object-fit: cover;
+    }
+</style>
+
+<div class="card mb-4 h-100" style="width: 28rem;">
+  <img src="{{ yemek.resim }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ yemek.yemek_adi|title }}</h5>
+    <p class="card-text">{{ yemek.aciklama|safe|striptags|slice:"0:50" }}</p>
+    <a href="{% url 'details' yemek.slug %}" class="btn btn-danger">Detaylar</a>
+  </div>
+</div>

@@ -1,0 +1,171 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <title>Anasayfa</title>
+  <style>
+    .carousel-item img{
+        height: 480px;
+        width: 825px;
+        object-fit: cover;
+    }
+    .carousel-control-prev{
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        left: 2%;
+        top: calc(50% - 25px);
+    }
+    .carousel-control-next{
+        background-color: #272643;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        right: 2%;
+        top: calc(50% - 25px);
+    }
+    .butonlar{
+        width: 200px;
+        height: 80px;
+        float: left;
+        margin-left: 30px;
+        text-align: center;
+        padding-top: 25px;
+        text-decoration: none;
+        color:white;
+        border-radius: 8px;
+    }      
+    </style>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+    <div class="container mt-4" style="margin-bottom: 120px;">
+        <div class="row">
+            <div class="col-9 justify-content-center">
+                <div id="carouselExampleAutoplaying" class="carousel slide" style="height:480px;" data-bs-ride="carousel">
+                    <div class="carousel-inner" style="height:480px; border-radius:8px; border:1px solid #DEE2E6;">
+                    <div class="carousel-item active" data-bs-interval="2000">
+                        <img src="https://static.bizimtarifler.com/wp-content/uploads/2021/12/dreamstime_s_61494568.jpg.webp" style="width: 100%;" class="d-block" alt="...">
+                        <div class="carousel-caption bg-danger" style="border-radius:8px;">
+                            <h5><a href="/yemekler/bademli-bruksel-lahanas-salatas" style="color:#EBF1F4; text-decoration:none;">Daha önce hiç Bademli Brüksel Lahanası Salatası denediniz mi? </a></h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://static.bizimtarifler.com/wp-content/uploads/2022/03/dreamstime_s_58751063.jpg.webp" style="width: 100%;" class="d-block" alt="...">
+                        <div class="carousel-caption bg-danger" style="border-radius:8px;">
+                            <h5><a href="/yemekler/yaban-mersinli-smoothie" style="color:#EBF1F4; text-decoration:none;">Daha önce hiç Yaban Mersinli Smoothie denediniz mi?</a></h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://static.bizimtarifler.com/wp-content/uploads/2022/03/dreamstime_s_84080489.jpg.webp" style="width: 100%;" class="d-block" alt="...">
+                        <div class="carousel-caption bg-danger" style="border-radius:8px;">
+                            <h5><a href="/yemekler/taze-ispanakl-cedar-peynirli-sandvic" style="color:#EBF1F4; text-decoration:none;">Daha önce hiç Taze Ispanaklı Çedar Peynirli Sandviç denediniz mi?</a></h5>
+                        </div>
+                    </div>
+                    </div>
+                    <button class="carousel-control-prev bg-danger" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next bg-danger" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+                integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+            </div>
+            <div class="col-3 justify-content-center">
+                <div class="" style="height:480px; border-radius:8px;">
+                    <a href="#"><img src="/static/hadi-yapabilirsin.jpg" alt="" style="height: 230px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;"></a>
+                    <a href="#"><img src="/static/hashtags.jpg" alt="" style="height: 230px; object-fit: cover; border-radius: 8px;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" style="margin-bottom: 120px;">
+        <div class="row">
+            <div class="col-8 justify-content-center">
+                <div class="youtubeFrame">
+                    <iframe width="730" height="480" style="border-radius:8px; border:1px solid #DEE2E6;"
+                    src="https://www.youtube.com/embed/7eSposJ0OJ0" title="YouTube video player" 
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen=""></iframe>
+                </div>
+            </div>
+            <div class="col-4 justify-text-center">
+                <table style="height:480px;">
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">
+                                <div class="youtube-link">
+                                    <h2>YOUTUBE KANALIMIZI ZİYARET ETMEK İSTER MİSİN ?</h2>
+                                    <a href="https://www.youtube.com/@dilarakocakiyiyasam/videos" class="btn btn-danger">TÜM VİDEOLAR</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" style="margin-bottom: 120px;">
+        <div class="row">
+            <div class="col-12">
+                <a class="butonlar" style="background-color: blueviolet;" href="{% url 'programlar' %}"><h4>PAKETLERİMİZ</h4></a>
+                <a class="butonlar" style="background-color:chocolate;" href="{% url 'yemekler' %}"><h4>TARİFLERİMiZ</h4></a>
+                <a class="butonlar" style="background-color:darkblue;" href="{% url 'doktorlar' %}"><h4>EKİBİMİZ</h4></a>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" style="margin-bottom: 120px;">
+        <div class="row">
+            <div class="col-12">
+                <h4>Doğru Diyet</h4>
+                <p>Kilo almanın altında yatan sebebin bulunması ve beslenme tedavisi ile iyileştirilmesi.</p>
+                <h4>Kalorisiz Beslenme</h4>
+                <p>Kalori hesabı yapmadan kişinin vücuduna yarayan ve yaramayan besinlerin tespit edilerek zayıflamanın sağlanması.</p>
+                <h4>Kilo Koruma</h4>
+                <p>Kişinin kendi vücudu için keşfedilen beslenme tarzının sürdürülebilir bir yaşam standardı haline getirilmesi.</p>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" style="margin-bottom: 120px;">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2>Diyet Yemeklerimize bakmak ister misin?</h2>
+            </div>
+            <div class="col-12">
+                {% if yemekler|length > 0 %}
+                    <div class="row g-3">
+                        {% for yemek in yemekler %}
+                            <div class="col d-flex justify-content-center">
+                                {% if yemek.anasayfa %}
+                                    {% include 'partials/_yemek.html' %}
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">Henüz bir şey eklenmedi.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                {% include 'comment.html' %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

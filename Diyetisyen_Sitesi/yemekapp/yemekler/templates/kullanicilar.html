@@ -1,0 +1,189 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css"
+        href="{% static 'style.css' %}">
+    <title>Diyet Yemekleri</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    {% include 'partials/_navbar.html' %}
+    <div class="kapsayici">
+        <div class="container mt-4">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            <!-- Kullanıcı Listesi -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-hover">
+                        <!-- Tablo Başlığı -->
+                        <thead class="thead-dark">
+                            <tr>
+                                <th colspan="3" class="text-center" style="background-color: black; color: white;">
+                                    <h1>Kullanıcı Listesi</h1>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>İsim</th>
+                                <th>Soyisim</th>
+                                <th>E-Posta</th>
+                            </tr>
+                        </thead>
+                        <!-- Tablo İçeriği -->
+                        <tbody>
+                            {% if user.username == 'Samet' %}
+                            {% for kullanici in kullanici_listesi|dictsort:"username"|slice:":3" %}
+                            <tr>
+                                <td>
+                                    
+                                    
+                                    
+                                    {{ kullanici.first_name }}
+                                    
+                                </td>
+                                <td>{{ kullanici.last_name }}</td>
+                                <td>{{ kullanici.email }}</td>
+                            </tr>
+                            {% endfor %}
+                            {%elif user.username == 'Ali' %}
+                            {% for kullanici in kullanici_listesi|dictsort:"username"|slice:"4:7" %}
+                            <tr>
+                                <td>{{ kullanici.first_name }} </td>
+                                <td>{{ kullanici.last_name }}</td>
+                                <td>{{ kullanici.email }}</td>
+                            </tr>
+                            {% endfor %}
+                            {%elif user.username == 'Çağdaş' %}
+                            {% for kullanici in kullanici_listesi|dictsort:"username"|slice:"8:" %}
+                            <tr>
+                                <td>{{ kullanici.first_name }} </td>
+                                <td>{{ kullanici.last_name }}</td>
+                                <td>{{ kullanici.email }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- E-Posta Gönderme Formu -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <form method="post" action="{% url 'mail_gonder' %}" class="form">
+                        {% csrf_token %}
+                        <!-- Form İçeriği -->
+                        <div class="form-group">
+                            <label for="email">Alıcı E-Posta:</label>
+                            <select name="email" required="" id="id_email" class="form-control">
+                                <option value="">E-Posta Seçiniz</option>
+                                {% if user.username == 'Samet' %}
+                                {% for kullanici in kullanici_listesi|dictsort:"username"|slice:":3" %}
+                                <option value="{{ kullanici.email }}">{{ kullanici.email }}</option>
+                                {% endfor %}
+                                {%elif user.username == 'Ali' %}
+                                {% for kullanici in kullanici_listesi|dictsort:"username"|slice:"4:7" %}
+                                <option value="{{ kullanici.email }}">{{ kullanici.email }}</option>
+                                {% endfor %}
+                                {%elif user.username == 'Çağdaş' %}
+                                {% for kullanici in kullanici_listesi|dictsort:"username"|slice:"8:"  %}
+                                <option value="{{ kullanici.email }}">{{ kullanici.email }}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="konu">Konu:</label>
+                            <input type="text" name="konu" id="konu" class="form-control" placeholder="Konu Giriniz:">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Kahvatılıklar</label>
+                            <select name="kahvalti" required="" id="kahvalti" class="form-control">
+                                <option value="">Kahvaltı Seçiniz:</option>
+
+                                {% for program in programlar|slice:":7" %}
+
+                                <option value="{{ program.id }}">{{ program.icerik }}</option>
+
+
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Öğle Yemekleri</label>
+                            <select name="ögle_yemegi" required="" id="ögle_yemegi" class="form-control">
+                                <option value="">Öğle Yemeği Seçiniz:</option>
+
+                                {% for program in programlar|slice:"8:14" %}
+
+                                <option value="{{ program.id }}">{{ program.icerik }}</option>
+
+
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Akşam Yemekleri</label>
+                            <select name="aksam_yemegi" required="" id="aksam_yemegi" class="form-control">
+                                <option value="">Akşam Yemeği Seçiniz:</option>
+
+                                {% for program in programlar|slice:"15:" %}
+
+                                <option value="{{ program.id }}">{{ program.icerik }}</option>
+
+
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="içerik">Mesaj:</label>
+                            <textarea rows="10" cols="100" name="içerik" id="içerik" class="form-control"
+                                placeholder="Mesajınızı Giriniz:"></textarea>
+                        </div>
+                        <!-- Gönder Butonu -->
+                        <button type="submit" class="btn btn-primary">GÖNDER</button>
+                    </form>
+                </div>
+            </div>
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-6 offset-lg-3">
+                        <h2 class="page-header" style="color:blue;"><i>Randevular </i></h2>
+                        <hr class="my-4">
+
+                        {% if user.first_name == "Ali" or user.first_name == "Çağdaş" or user.first_name == "Samet" %}
+                        {% for randevu in randevular %}
+                        {% if randevu.doktor.ad == user.first_name %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h3 class="card-title">Dyt. {{ randevu.doktor.ad }} {{ randevu.doktor.soyad }}</h3>
+                                <p class="card-text"><strong>{{ randevu.user }}, </strong><small>{{ randevu.tarih}}</small>, <small>{{ randevu.saat }}</small></p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

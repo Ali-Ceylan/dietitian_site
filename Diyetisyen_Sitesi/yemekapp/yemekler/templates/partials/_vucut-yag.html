@@ -1,0 +1,80 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <title>Vücut Yağ Oranı</title>
+    <style>
+    </style>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-3">
+                {% include 'partials/_hesaplama-categories.html' %}
+            </div>
+            <div class="col-9">
+                <form>
+                    <div class="mb-3">
+                        <label for="weight">Kilo (kg):</label>
+                        <input type="number" class="form-control" id="weight" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="height">Boy (cm):</label>
+                        <input type="number" class="form-control" id="height" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="waist">Bel Çevresi (cm):</label>
+                        <input type="number" class="form-control" id="waist" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="hip">Kalça Çevresi (cm):</label>
+                        <input type="number" class="form-control" id="hip" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender">Cinsiyet:</label>
+                        <select class="form-control" id="gender">
+                            <option value="" selected disabled>-- Seçiniz --</option>
+                            <option value="male">Erkek</option>
+                            <option value="female">Kadın</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-danger" onclick="calculateBodyFat()">Vücut Yağ Oranını Hesapla</button>
+                </form>
+            
+                <div id="result" class="mt-4"></div>
+            
+                <script>
+                    function calculateBodyFat() {
+                        var weight = document.getElementById("weight").value;
+                        var height = document.getElementById("height").value;
+                        var waist = document.getElementById("waist").value;
+                        var hip = document.getElementById("hip").value;
+                        var gender = document.getElementById("gender").value;
+            
+                        var bodyFat = 0;
+                        if (gender === "male") {
+                            bodyFat = (495 / (1.0324 - 0.19077 * Math.log10(waist - hip) + 0.15456 * Math.log10(height))) - 450;
+                        } else if (gender === "female") {
+                            bodyFat = (495 / (1.29579 - 0.35004 * Math.log10(waist + hip - height) + 0.22100 * Math.log10(height))) - 450;
+                        }
+            
+                        var result = "Vücut Yağ Oranınız: " + bodyFat.toFixed(2) + "%";
+            
+                        document.getElementById("result").innerHTML = result;
+                    }
+                </script>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

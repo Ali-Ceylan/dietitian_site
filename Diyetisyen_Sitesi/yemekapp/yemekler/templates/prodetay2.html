@@ -1,0 +1,143 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <title>Sporcu Beslenmesi Kolay</title>
+    <style>
+        .orta1{width:800px;
+    height:auto;
+    float:left;
+    background-color: lightgray;
+    margin:0 auto;
+    margin-top:10px;
+    border:2px solid black;
+    border-radius: 20px;
+    text-align: center;
+    padding:10px 10px ;    }
+        table {
+            border: 2px solid black;
+        }
+
+        .sol a:hover {
+            background-color: blue;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .orta {
+            text-align: left;
+            margin: 0px 400px 0px 400px;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'partials/_navbar.html' %}
+    <div>
+        <center>
+            <h1>Sporcu Beslenmesi Kolay</h1>
+        </center>
+    </div>
+    <div class="orta">
+        <div class="elementor-widget-wrap elementor-element-populated">
+            <div class="elementor-element elementor-element-5a00c277 elementor-widget elementor-widget-woocommerce-product-content"
+                data-id="5a00c277" data-element_type="widget" data-widget_type="woocommerce-product-content.default">
+                <div class="elementor-widget-container">
+                    <div class="wprt-container">
+                        <p>Spor yapan ve protein oranı yüksek öğünlerle beslenmeyi hedefleyen kişilerin ihtiyacına
+                            yönelik olan Sporcu Beslenmesi Kolay Paketi; Protein, kompleks karbonhidrat, sağlıklı yağlar
+                            ve lif oranı sana özel olan, antrenman sonrası ara öğünlerinin yer aldığı ve geleneksel
+                            tatlar ile dünya mutfağının birleştiği menüleriyle her gün kapında!</p>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        <div class="table-responsive wprt_style_display">
+                            <table class="table">
+                                <tbody>
+                                    <tr style="background-color: yellowgreen; color: white;">
+                                        <td width="121">Kahvaltı</td>
+                                        <td width="121">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ara Öğün</td>
+                                        <td width="121">Öğle Yemeği</td>
+                                        <td width="121">2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ara Öğün</td>
+                                        <td width="121">Akşam Yemeği</td>
+                                        <td width="121">Antreman Sonrası</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="121">Baharatlı haşlanmış<br>
+                                            yumurta</td>
+                                        <td width="121">Yulaf topları</td>
+                                        <td width="121">Fırında tavuk but</td>
+                                        <td width="121">Karabuğday patlağı<br>
+                                            üzerine şekersiz<br>
+                                            fıstık ezmesi</td>
+                                        <td width="121">Izgara biftek</td>
+                                        <td width="121">Magic Smoothie</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="121">Lor peyniri</td>
+                                        <td width="121">Kırmızı elma</td>
+                                        <td width="121">Yasemin pirinci pilavı</td>
+                                        <td width="121">Muz</td>
+                                        <td width="121">Domates soslu<br>
+                                            tam tahıllı makarna</td>
+                                        <td width="121">Ton balıklı sandviç</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="121">Diyetkolay sporcu<br>
+                                            özel ekmeği</td>
+                                        <td width="121"></td>
+                                        <td width="121">Enginar kalbi salatası</td>
+                                        <td width="121">Tatlı lor</td>
+                                        <td width="121">Fırında brüksel lahanası<br>
+                                            (nar ve ceviz eşliğinde)</td>
+                                        <td width="121"></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="121">Bol yeşillik</td>
+                                        <td width="121"></td>
+                                        <td width="121"></td>
+                                        <td width="121"></td>
+                                        <td width="121"></td>
+                                        <td width="121"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>&nbsp;</p>
+                        <p>&nbsp;</p>
+                        
+                    </div>
+                </div>
+                    <!---
+                    <table> 
+                                {% if user.is_authenticated %}
+                                <h2>Paketi mail ile almak ister misiniz?</h2>
+                                <form method="post" action="{% url 'mail_gonder' %}">
+                                    {% csrf_token %}
+                                    
+                                    <button type="submit" class="metform-btn metform-submit-btn " style="margin-left:0px; width: 200px; height:40px; border-radius: 5px; background-color: rgb(60, 60, 245); color: white;" id=""><span>Mail At</span></button>    
+                                </form>
+                                {% else %}
+                                <h2>Paketi mail almak için Lütfen giriş yapınız:</h2>
+                                <form action="{% url 'login' %}">
+                                <button type="submit" class="metform-btn metform-submit-btn " style="margin-left:0px; width: 200px; height:40px; border-radius: 5px; background-color: rgb(60, 60, 245); color: white;" id=""><span>Giriş Yap</span></button>
+                                 <br><br>
+                                 <h4>Giriş yapmadan devam et</h4>
+                                 <a style="text-decoration: none;" class="btn btn-dark" href="mail_formu"> Mail Formu</a>
+                                {% endif %}
+                                
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

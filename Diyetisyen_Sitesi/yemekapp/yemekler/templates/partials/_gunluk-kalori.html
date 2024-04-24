@@ -1,0 +1,97 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <title>Günlük Kalori İhtiyacı</title>
+    <style>
+    </style>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-3">
+                {% include 'partials/_hesaplama-categories.html' %}
+            </div>
+            <div class="col-9">
+                <form>
+                    <div class="mb-3">
+                        <label for="weight">Kilo (kg):</label>
+                        <input type="number" class="form-control" id="weight" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="height">Boy (cm):</label>
+                        <input type="number" class="form-control" id="height" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="age">Yaş:</label>
+                        <input type="number" class="form-control" id="age" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender">Cinsiyet:</label>
+                        <select class="form-control" id="gender">
+                            <option value="" selected disabled>-- Seçiniz --</option>
+                            <option value="male">Erkek</option>
+                            <option value="female">Kadın</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="activity-level">Aktivite Düzeyi:</label>
+                        <select class="form-control" id="activity-level">
+                            <option value="" selected disabled>-- Seçiniz --</option>
+                            <option value="sedentary">Çok Az Hareketli (Ofis İşleri)</option>
+                            <option value="lightly-active">Hafif Aktif (Hafif Egzersiz)</option>
+                            <option value="moderately-active">Orta Aktif (Orta Şiddetli Egzersiz)</option>
+                            <option value="very-active">Çok Aktif (Yoğun Egzersiz)</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-danger" onclick="calculateDailyCalorie()">Günlük Kalori İhtiyacını Hesapla</button>
+                </form>
+            
+                <div id="result" class="mt-4"></div>
+            
+                <script>
+                    function calculateDailyCalorie() {
+                        var weight = document.getElementById("weight").value;
+                        var height = document.getElementById("height").value;
+                        var age = document.getElementById("age").value;
+                        var gender = document.getElementById("gender").value;
+                        var activityLevel = document.getElementById("activity-level").value;
+            
+                        var bmr = 0;
+                        if (gender === "male") {
+                            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+                        } else if (gender === "female") {
+                            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+                        }
+            
+                        var dailyCalorie = 0;
+                        if (activityLevel === "sedentary") {
+                            dailyCalorie = bmr * 1.2;
+                        } else if (activityLevel === "lightly-active") {
+                            dailyCalorie = bmr * 1.375;
+                        } else if (activityLevel === "moderately-active") {
+                            dailyCalorie = bmr * 1.55;
+                        } else if (activityLevel === "very-active") {
+                            dailyCalorie = bmr * 1.725;
+                        }
+            
+                        var result = "Günlük Kalori İhtiyacınız: " + dailyCalorie.toFixed(2) + " kalori";
+            
+                        document.getElementById("result").innerHTML = result;
+                    }
+                </script>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<div class="list-group">
+    {% for kategori in kategoriler %}
+        {% if kategori.slug == secilen_kategori %}
+            <a class="list-group-item list-group-item-action active bg-danger" href="{% url "yemekcategory" kategori.slug %}">{{kategori.name|title}}</a>
+        {% else %}
+            <a class="list-group-item list-group-item-action" href="{% url "yemekcategory" kategori.slug %}">{{kategori.name|title}}</a>
+        {% endif %}
+    {% endfor %}
+</div>
